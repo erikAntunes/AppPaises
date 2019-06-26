@@ -27,18 +27,21 @@ public class MainActivity extends AppCompatActivity implements PaisesListener {
         Pais pais = new Pais();
         pais.setNome("Brasil");
         pais.setIdioma("Português");
+        pais.setBandeira("https://static.significados.com.br/foto/brasil-6f.jpg");
         pais.setQuantidadeDeHabitantes(200_000_000);
         listaPaises.add(pais);
 
         Pais pais1 = new Pais();
         pais1.setNome("China");
         pais1.setIdioma("人物");
+        pais1.setBandeira("https://static.significados.com.br/foto/china.jpg");
         pais1.setQuantidadeDeHabitantes(1_000_000_000);
         listaPaises.add(pais1);
 
         Pais pais2 = new Pais();
         pais2.setNome("Estados Unidos");
         pais2.setIdioma("Inglês");
+        pais2.setBandeira("https://static.significados.com.br/foto/estados-unidos.jpg");
         pais2.setQuantidadeDeHabitantes(300_000_000);
         listaPaises.add(pais2);
 

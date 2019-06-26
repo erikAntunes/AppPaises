@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.paisesapp.R;
 import com.example.paisesapp.interfaces.PaisesListener;
 import com.example.paisesapp.model.Pais;
+import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
 import java.util.List;
@@ -79,6 +80,8 @@ public class PaisesAdapter extends RecyclerView.Adapter<PaisesAdapter.ViewHolder
             nomeTextView.setText(pais.getNome());
             populacaoTextView.setText("pop. "+pais.getQuantidadeDeHabitantes());
             idiomaTextView.setText(pais.getIdioma());
+
+            Picasso.get().load(pais.getBandeira()).into(bandeiraImageView);
 
         }
 
