@@ -9,8 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.paisesapp.R;
+import com.example.paisesapp.interfaces.PaisesListener;
 import com.example.paisesapp.model.Pais;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class PaisesAdapter extends RecyclerView.Adapter<PaisesAdapter.ViewHolder> {
@@ -18,10 +20,14 @@ public class PaisesAdapter extends RecyclerView.Adapter<PaisesAdapter.ViewHolder
 
 
     private List<Pais> listaPaises;
+    private PaisesListener paisesListener;
 
-    public PaisesAdapter(List<Pais> listaPaises){
+    public PaisesAdapter(List<Pais> listaPaises, PaisesListener paisesListener){
+
         this.listaPaises = listaPaises;
+        this.paisesListener = paisesListener;
     }
+
 
 
     @NonNull
@@ -33,9 +39,16 @@ public class PaisesAdapter extends RecyclerView.Adapter<PaisesAdapter.ViewHolder
 
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Pais pais = listaPaises.get(i);
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
+        final Pais pais = listaPaises.get(i);
         viewHolder.setupPais(pais);
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                paisesListener.onPaisClickado(pais);
+            }
+        });
 
     }
 

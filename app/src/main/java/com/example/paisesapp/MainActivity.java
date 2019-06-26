@@ -1,17 +1,21 @@
 package com.example.paisesapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.paisesapp.adapter.PaisesAdapter;
+import com.example.paisesapp.interfaces.PaisesListener;
 import com.example.paisesapp.model.Pais;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements PaisesListener {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         Pais pais = new Pais();
         pais.setNome("Brasil");
-        pais.setIdioma("PT-BR");
+        pais.setIdioma("Português");
         pais.setQuantidadeDeHabitantes(200_000_000);
         listaPaises.add(pais);
 
@@ -38,12 +42,29 @@ public class MainActivity extends AppCompatActivity {
         pais2.setQuantidadeDeHabitantes(300_000_000);
         listaPaises.add(pais2);
 
-        PaisesAdapter paisesAdapter = new PaisesAdapter(listaPaises);
+        PaisesAdapter paisesAdapter = new PaisesAdapter(listaPaises,this);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
         RecyclerView recyclerView = findViewById(R.id.paises_recycle_view);
         recyclerView.setAdapter(paisesAdapter);
         recyclerView.setLayoutManager(layoutManager);
+    }
+
+    @Override
+    public void onPaisClickado(Pais pais) {
+        Intent intent = new Intent(this, PaisDetalheActivity.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("PAIS",pais);
+
+        intent.putExtras(bundle);
+
+        startActivity(intent);
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 }
